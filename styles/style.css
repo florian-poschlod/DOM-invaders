@@ -1,0 +1,26 @@
+body {
+  font-size: 10px;
+}
+
+#invaders-container {
+  width: 1200px;
+  height: 800px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  padding-top: 0px;
+}
+
+#invaders-container > * {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid lawngreen;
+}
+
