@@ -1,60 +1,42 @@
 const invaders = [
-  'tyrant',
-  'vaporizer',
-  'slaughterer',
-  'desolator',
-  'silencer',
-  'devourer',
-  'brain-eater',
-  'suffocator'
+  // 'tyrant',
+  // 'vaporizer',
+  // 'slaughterer',
+  // 'desolator',
+  // 'silencer',
+  // 'devourer',
+  // 'brain-eater',
+  // 'suffocator'
+  'a',
+  'a',
+  'a',
+  'a',
+  'a',
+  'a',
+  'a',
+  'a'
 ]
 
-const invaderArmy = document.getElementById('invaders-container');
-// const remainingInvaders = invadersContainer.childElementCount;
-// console.log(remainingInvaders);
-
-const game = new Game(1, 100, invaderArmy);
-
+const gameContainer = document.getElementById('game');
 
 window.addEventListener('load', () => {
-  // generate invader elements
-  invaders.forEach(invader => {
-    const newInvader = document.createElement('div');
-    newInvader.classList.add(`${ invader }`);
-    newInvader.innerHTML = `class: <br> ${invader}`;
-    invaderArmy.appendChild(newInvader);
-  });
+  // invaders are 120px tall
+  const game = new Game(120, 1000, gameContainer, invaders);
+  game.newGame();
 
-  game.invadersDescend();
-  
   const input = document.getElementById('code-input');  
   const submitCodeBtn = document.getElementById('submit');
-  
+    
   // submit code btn
   submitCodeBtn.addEventListener('click', () => {
-    game.destroyInvader(invaderArmy, input.value);
+    game.destroyInvader(input.value);
   });
   
   // input
   input.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
-      // const remainingInvaders = invadersContainer.childElementCount;
-      game.destroyInvader(invaderArmy, input.value);
-      // console.log(remainingInvaders);
-      console.log(invaderArmy);
-      console.log(invaderArmy.childElementCount);
+      game.destroyInvader(input.value);
     }
   });
 });
-
-console.log(game.endGame());
-console.log(game.invasionProgress);
-// console.log(game.invadersDescend());
-// if (!game.invadersDescend()) {
-//   console.log('You saved our DOM!');
-// }
-
-// if(game.invadersDescend()) {
-//   console.log('All our DOM is lost!');
-// }
 
