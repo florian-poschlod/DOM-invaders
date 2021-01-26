@@ -1,48 +1,44 @@
 // console.log('game.js here!');
 
 class Game {
-  constructor(invaders, invasionSpeed, invasionInterval) {
-    this.invaders = invaders;
+  constructor(invasionSpeed, invasionInterval, invaderArmy) {
+    // this.invaders = invaders;
     this.invasionSpeed = invasionSpeed;
     this.invasionInterval = invasionInterval;
     this.invadersDestroyed = 0;
-    this.remainingInvaders = invadersContainer.childElementCount;
+    this.invaderArmy = invaderArmy;
+    // this.remainingInvaders = this.invaderArmy.childElementCount;
   }
 
-  destroyInvader(parent, value) {
-    let child = document.querySelector(`${value}`);
-    parent.removeChild(child);
-    console.log(this.remainingInvaders);
+  destroyInvader(invaderArmy, value) {
+    let invader = document.querySelector(`${value}`);
+    invaderArmy.removeChild(invader);
+    console.log(invaderArmy.childElementCount);
   }
 
-  invadersDescend(invasionSpeed, invasionInterval) {
+  invadersDescend(invasionSpeed, interval, invaderArmy) {
+    console.log(invaderArmy);
+    
+    // console.log(invaderArmy.childElementCount);
     let invasionProgress = 0;
-    setInterval(function() {
-      if (invasionProgress < invadersContainer.offsetHeight - 120) {
-        invasionProgress += invasionSpeed;
-        console.log('invasion progress', invasionProgress);
-        invadersContainer.style.paddingTop = invasionProgress + "px";
+    let descend = setInterval(function () {
+      invasionProgress += invasionSpeed;
+      console.log(invaderArmy.childElementCount);
+      invaderArmy.style.paddingTop = invasionProgress + "px";
+      if (invasionProgress <= invaderArmy.offsetHeight - 120 && invaderArmy.childElementCount === 0) {
+        console.log('You saved our DOM!');
+        clearInterval(descend);
+        // return;
       }
-      if (invasionProgress > invadersContainer.offsetHeight -120) {
-        console.log('you lost');
-        clearInterval();
-        return;
+      if (invasionProgress >= invaderArmy.offsetHeight - 120 && invaderArmy.childElementCount > 0) {
+        console.log('All our DOM is lost!');
+        clearInterval(descend);
+        // return;
       }
-    }, invasionInterval);
+    }, interval);
   }
 
   endGame() {
 
   }
 }
-
-
-
-// var myDiv = document.getElementById("a");
-// var myVar = setInterval(spostaDiv, 1000);
-// var margin = 0;
-
-// function spostaDiv() {
-//   margin += 10;
-//   myDiv.style.marginLeft = margin + "px";
-// }

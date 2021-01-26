@@ -1,41 +1,48 @@
 const invaders = [
-  'existence-tyrant',
-  'globe-vaporizer',
-  'slaughterer-of-epochs',
-  'corrupt-desolator',
-  'silencer-of-planets',
-  'colossal-devourer',
-  'cosmos-vaporize',
-  'frozen-suffocator'
+  'tyrant',
+  'vaporizer',
+  'slaughterer',
+  'desolator',
+  'silencer',
+  'devourer',
+  'brain-eater',
+  'suffocator'
 ]
 
-const invadersContainer = document.getElementById('invaders-container');
-const input = document.getElementById('code-input');
+const invaderArmy = document.getElementById('invaders-container');
 
-const game = new Game;
-game.invadersDescend(120, 1000);
-// console.log(invadersContainer);
+// const remainingInvaders = invadersContainer.childElementCount;
+// console.log(remainingInvaders);
 
-
+const game = new Game();
+game.invadersDescend(1, 1000, invaderArmy);
 
 window.addEventListener('load', () => {
-  // generate invaders
+  // generate invader elements
   invaders.forEach(invader => {
     const newInvader = document.createElement('div');
     newInvader.classList.add(`${ invader }`);
-    newInvader.innerText = `class: </br> ${invader}`;
-    invadersContainer.appendChild(newInvader);
+    newInvader.innerHTML = `class: <br> ${invader}`;
+    invaderArmy.appendChild(newInvader);
   });
 
-  // let remain = document.getElementById('invaders-container').childElementCount;
-  // console.log('remain', remain);
-
+  const input = document.getElementById('code-input');  
+  const submitCodeBtn = document.getElementById('submit');
   
   // submit code btn
-  const submitCodeBtn = document.getElementById('submit');
   submitCodeBtn.addEventListener('click', () => {
-    console.log(invadersContainer, input.value);
-    game.destroyInvader(invadersContainer, input.value);
+    game.destroyInvader(invaderArmy, input.value);
+  });
+  
+  // input
+  input.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      // const remainingInvaders = invadersContainer.childElementCount;
+      game.destroyInvader(invaderArmy, input.value);
+      // console.log(remainingInvaders);
+      console.log(invaderArmy);
+      console.log(invaderArmy.childElementCount);
+    }
   });
 });
 

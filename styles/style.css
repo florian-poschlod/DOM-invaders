@@ -1,26 +1,46 @@
 body {
+  /* font-family: 'Press Start 2P', cursive; */
   font-size: 10px;
+  background-color: white;
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2rem;
+  color: lawngreen;
+  text-align: center;
 }
 
 #invaders-container {
-  width: 1200px;
-  height: 800px;
+  width: 1120px;
+  height: 720px;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   border: 1px solid black;
+  /* background-color: grey; */
   padding-top: 0px;
 }
 
 #invaders-container > * {
-  width: 120px;
-  height: 120px;
+  width: 154px;
+  height: 112px;
+  /* width: 12%; */
+  background-image: url("../assets/invader-outline.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 1rem;
-  border: 1px solid lawngreen;
+  text-overflow: clip;
+  font-size: 0.8rem;
 }
 
