@@ -10,12 +10,11 @@ const invaders = [
 ]
 
 const invaderArmy = document.getElementById('invaders-container');
-
 // const remainingInvaders = invadersContainer.childElementCount;
 // console.log(remainingInvaders);
 
-const game = new Game();
-game.invadersDescend(1, 1000, invaderArmy);
+const game = new Game(1, 100, invaderArmy);
+
 
 window.addEventListener('load', () => {
   // generate invader elements
@@ -26,6 +25,8 @@ window.addEventListener('load', () => {
     invaderArmy.appendChild(newInvader);
   });
 
+  game.invadersDescend();
+  
   const input = document.getElementById('code-input');  
   const submitCodeBtn = document.getElementById('submit');
   
@@ -46,7 +47,14 @@ window.addEventListener('load', () => {
   });
 });
 
+console.log(game.endGame());
+console.log(game.invasionProgress);
+// console.log(game.invadersDescend());
+// if (!game.invadersDescend()) {
+//   console.log('You saved our DOM!');
+// }
 
-
-// local storage
+// if(game.invadersDescend()) {
+//   console.log('All our DOM is lost!');
+// }
 

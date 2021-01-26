@@ -2,43 +2,36 @@
 
 class Game {
   constructor(invasionSpeed, invasionInterval, invaderArmy) {
-    // this.invaders = invaders;
     this.invasionSpeed = invasionSpeed;
     this.invasionInterval = invasionInterval;
+    this.invasionProgress = 0;
     this.invadersDestroyed = 0;
     this.invaderArmy = invaderArmy;
-    // this.remainingInvaders = this.invaderArmy.childElementCount;
   }
 
   destroyInvader(invaderArmy, value) {
     let invader = document.querySelector(`${value}`);
     invaderArmy.removeChild(invader);
-    console.log(invaderArmy.childElementCount);
   }
 
-  invadersDescend(invasionSpeed, interval, invaderArmy) {
-    console.log(invaderArmy);
-    
-    // console.log(invaderArmy.childElementCount);
-    let invasionProgress = 0;
+  invadersDescend() {
     let descend = setInterval(function () {
-      invasionProgress += invasionSpeed;
-      console.log(invaderArmy.childElementCount);
-      invaderArmy.style.paddingTop = invasionProgress + "px";
-      if (invasionProgress <= invaderArmy.offsetHeight - 120 && invaderArmy.childElementCount === 0) {
-        console.log('You saved our DOM!');
-        clearInterval(descend);
-        // return;
+      this.invasionProgress += this.invasionSpeed;
+      // console.log(endGame());
+      console.log(endGame());
+      if (this.invasionProgress <= this.invaderArmy.offsetHeight - 120) {
+        this.invaderArmy.style.paddingTop = this.invasionProgress + "px";
       }
-      if (invasionProgress >= invaderArmy.offsetHeight - 120 && invaderArmy.childElementCount > 0) {
-        console.log('All our DOM is lost!');
+      if (this.invasionProgress >= this.invaderArmy.offsetHeight - 120) {
         clearInterval(descend);
-        // return;
       }
-    }, interval);
+    }.bind(this), this.invasionInterval);
   }
 
   endGame() {
-
+    if (this.invasionProgress < 100) {
+      return true;
+    }
+    return false;
   }
 }
