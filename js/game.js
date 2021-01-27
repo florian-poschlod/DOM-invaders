@@ -10,14 +10,14 @@ class Game {
   }
 
   generateInvaders() {
-    // console.log('generate inv called!');
     this.invaders.forEach(invader => {
       const newInvader = document.createElement('div');
       newInvader.classList.add(`${invader}`);
       newInvader.innerHTML = `class: <br> ${invader}`;
       this.gameContainer.appendChild(newInvader);
     });
-    this.criticalInvasionProgress = this.gameContainer.offsetHeight - this.gameContainer.firstChild.offsetHeight;
+    this.criticalInvasionProgress = this.gameContainer.offsetHeight;
+
   }
 
   destroyInvader(value) {
@@ -28,15 +28,11 @@ class Game {
   moveInvaders() {
     let descent = setInterval(function () {
       this.remainingInvaders = this.gameContainer.childElementCount;
-      // console.log('critical inv prog:', this.criticalInvasionProgress);
-      console.log('inv prog:', this.invasionProgress );
       if (this.invasionProgress < this.criticalInvasionProgress) {
         this.gameContainer.style.paddingTop = this.invasionProgress + "px";
         this.invasionProgress += this.invasionSpeed;
-        // console.log('incremented prog by:', this.invasionSpeed);
       }
       if (this.invasionProgress === this.criticalInvasionProgress && this.remainingInvaders > 0) {
-        console.log('inv prog at player lose:', this.invasionProgress);
         clearInterval(descent);
         this.playerLoses();
       }
@@ -87,6 +83,7 @@ class Game {
     button.addEventListener('click', () => {
       gameWrapper.removeChild(messageContainer);
       gameWrapper.appendChild(this.gameContainer);
+      document.getElementById('code-input').focus();
       this.generateInvaders();
       this.moveInvaders();
     });

@@ -36,6 +36,8 @@ window.addEventListener('load', () => {
   input.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
       game.destroyInvader(input.value);
+      console.log(input);
+      input.value = '';
     }
   });
 });

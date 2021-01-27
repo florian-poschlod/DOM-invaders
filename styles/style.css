@@ -25,13 +25,10 @@ h1 {
 #game{
   width: 1120px;
   height: 720px;
-  /* position: absolute; */
-  /* z-index: 1; */
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  border: 1px solid white;
-  /* background-color: grey; */
+  border-bottom: 1px solid darkgrey;
   padding-top: 0px;
 }
 
@@ -39,7 +36,7 @@ h1 {
 #game > * {
   width: 154px;
   height: 120px;
-  background-image: url("../assets/invader-outline.png");
+  background-image: url("../assets/invader.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -51,7 +48,7 @@ h1 {
   text-align: center;
   text-overflow: clip;
   font-size: 0.6rem;
-  color: grey;
+  color: black;
 }
 
 .message-container {
@@ -111,4 +108,56 @@ button {
 button:hover,
 button:focus {
     background: white;
+}
+
+
+input:focus, textarea:focus, select:focus{
+        outline: none;
+    }
+
+
+/* Text Input */
+
+#code-input-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+  height: 48px;
+  border: 1px solid darkgrey;
+  /* background-color: dimgray; */
+}
+
+.inactive-text {
+  display: flex;
+  align-items: center;
+  /* line-height: 100%; */
+  padding-top: 2px;
+  color: rgb(100,100,100);
+  font-size: 1rem;
+  margin-left: 16px;
+  margin-right: 8px;
+}
+
+input[type=text] {
+  display: flex;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: white;
+  width: 100%;
+  height: 48px;
+  /* height: 48px; */
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+#submit {
+  background: none;
+  background-color: none;
+  background-image: url("../assets/return.png");
+  background-size: cover;
+  border: none;
+  width: 48px;
+  height: 48px;
 }
