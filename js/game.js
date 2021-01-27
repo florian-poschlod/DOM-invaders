@@ -10,6 +10,7 @@ class Game {
   }
 
   generateInvaders() {
+    // console.log('generate inv called!');
     this.invaders.forEach(invader => {
       const newInvader = document.createElement('div');
       newInvader.classList.add(`${invader}`);
@@ -24,33 +25,39 @@ class Game {
     this.gameContainer.removeChild(invader);
   }
 
-  invadersMovement() {
-    this.remainingInvaders = this.gameContainer.childElementCount;
-    // console.log(this.criticalInvasionProgress);
-    console.log(this.remainingInvaders);
+  moveInvaders() {
     let descent = setInterval(function () {
+      this.remainingInvaders = this.gameContainer.childElementCount;
+      // console.log('critical inv prog:', this.criticalInvasionProgress);
+      console.log('inv prog:', this.invasionProgress );
       if (this.invasionProgress < this.criticalInvasionProgress) {
-        this.invasionProgress += this.invasionSpeed;
         this.gameContainer.style.paddingTop = this.invasionProgress + "px";
+        this.invasionProgress += this.invasionSpeed;
+        // console.log('incremented prog by:', this.invasionSpeed);
       }
-      if (this.invasionProgress >= this.criticalInvasionProgress && this.remainingInvaders > 0) {
-        this.playerLoses();
+      if (this.invasionProgress === this.criticalInvasionProgress && this.remainingInvaders > 0) {
+        console.log('inv prog at player lose:', this.invasionProgress);
         clearInterval(descent);
+        this.playerLoses();
       }
       if (this.invasionProgress <= this.criticalInvasionProgress && this.remainingInvaders === 0) {
-        this.playerWins();
         clearInterval(descent);
+        this.playerWins();
       }
     }.bind(this), this.interval);
   }
 
   playerLoses() {
+    this.gameContainer.innerHTML = '';
+    this.invasionProgress = 0;
     const message = this.message();
     message.classList.add('lose');
     message.innerHTML = 'OUR DOM HAS BEEN INVADED! <br> YOU LOST!'
   }
 
   playerWins() {
+    this.gameContainer.innerHTML = '';
+    this.invasionProgress = 0;
     const message = this.message();
     message.classList.add('win');
     message.innerHTML = 'OUR DOM IS SAVE FOR NOW! <br> GOOD JOB!'
@@ -81,7 +88,7 @@ class Game {
       gameWrapper.removeChild(messageContainer);
       gameWrapper.appendChild(this.gameContainer);
       this.generateInvaders();
-      this.invadersMovement();
+      this.moveInvaders();
     });
     messageContainer.appendChild(message);
     messageContainer.appendChild(button);

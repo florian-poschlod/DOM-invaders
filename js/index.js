@@ -21,7 +21,7 @@ const gameContainer = document.getElementById('game');
 
 window.addEventListener('load', () => {
   // invaders are 120px tall
-  const game = new Game(120, 1000, gameContainer, invaders);
+  const game = new Game(60, 1000, gameContainer, invaders);
   game.newGame();
 
   const input = document.getElementById('code-input');  
