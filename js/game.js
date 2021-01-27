@@ -16,12 +16,12 @@ class Game {
       newInvader.innerHTML = `class: <br> ${invader}`;
       this.gameContainer.appendChild(newInvader);
     });
-    this.criticalInvasionProgress = this.gameContainer.offsetHeight;
+    this.criticalInvasionProgress = this.gameContainer.offsetHeight - this.gameContainer.firstChild.offsetHeight;
 
   }
 
   destroyInvader(value) {
-    let invader = document.querySelector(`${value}`);
+    let invader = gameContainer.querySelector(`${value}`);
     this.gameContainer.removeChild(invader);
   }
 
