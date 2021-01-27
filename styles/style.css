@@ -39,7 +39,7 @@ h1 {
 #game > * {
   width: 154px;
   height: 120px;
-  background-image: url("../assets/invader-outline.png");
+  background-image: url("/assets/invader-outline.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
