@@ -17,26 +17,38 @@ h1 {
 }
 
 #game-container {
-  width: 1120px;
+  width: 1200px;
   height: 720px;
   box-sizing: border-box;
 }
 
+/* Game container, padding top increases to move the invaders */
 #game{
-  width: 1120px;
+  width: 1200px;
   height: 720px;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  /* flex-wrap: wrap;1 */
+  align-items: flex-start;
+  align-content: flex-start;
   border-bottom: 1px solid darkgrey;
   padding-top: 0px;
 }
 
-/* Invaders */
-#game > * {
-  width: 154px;
+/* Invaders wrapper */
+.invader-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+/* #game > div { */
+  .invader-wrapper > div {
+  width: 150px;
   height: 120px;
-  background-image: url("../assets/invader.png");
+  /* background-image: url("../assets/invader.png"); */
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -52,7 +64,7 @@ h1 {
 }
 
 .message-container {
- width: 1120px;
+ width: 1200px;
  height: 720px;
  display: flex;
  flex-direction: column;
