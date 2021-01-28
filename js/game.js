@@ -14,7 +14,7 @@ class Game {
     const invaderWrapper = document.createElement('div');
     invaderWrapper.classList.add('invader-wrapper');
     this.invaderWrapper = invaderWrapper;
-    console.log(this.invaderWrapper);
+    // console.log(this.invaderWrapper);
     this.gameContainer.appendChild(this.invaderWrapper);
     const newInvader = new Invader();
     for(let i = 0; i < this.invaderAmt; i++) {
