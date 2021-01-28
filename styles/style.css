@@ -22,6 +22,19 @@ h1 {
   box-sizing: border-box;
 }
 
+/* Score */
+#score {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.score {
+  font-size: 1rem;
+  color: white;
+}
+
+
 /* Game container, padding top increases to move the invaders */
 #game{
   width: 1200px;

@@ -6,7 +6,7 @@ const INVADER_NAMES = [
   'silencer',
   'devourer',
   'brain-eater',
-  'suffocator'
+  'strangler'
 ];
 
 const INVADER_BMP = [

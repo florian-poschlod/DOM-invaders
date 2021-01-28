@@ -8,29 +8,36 @@ class Game {
     this.remainingInvaders;
     this.criticalInvasionProgress;
     this.invaderWrapper;
+    this.score = 0;
+    this.elapsedTime = 0;
   }
 
   generateInvaders() {
     const invaderWrapper = document.createElement('div');
     invaderWrapper.classList.add('invader-wrapper');
     this.invaderWrapper = invaderWrapper;
-    // console.log(this.invaderWrapper);
     this.gameContainer.appendChild(this.invaderWrapper);
     const newInvader = new Invader();
     for(let i = 0; i < this.invaderAmt; i++) {
       this.invaderWrapper.appendChild(newInvader.assemble());
     }
+    this.remainingInvaders = this.invaderWrapper.childElementCount;
     this.criticalInvasionProgress = this.gameContainer.offsetHeight - this.gameContainer.firstChild.offsetHeight;
   }
 
   destroyInvader(value) {
     let invader = this.invaderWrapper.querySelector(`${value}`);
     this.invaderWrapper.removeChild(invader);
+    this.score = this.invaderAmt - this.invaderWrapper.childElementCount;
+    const scoreCounter = document.getElementById('score-counter');
+    scoreCounter.innerText = this.score * 1000;
   }
-
+  
   moveInvaders() {
     let descent = setInterval(function () {
       this.remainingInvaders = this.invaderWrapper.childElementCount;
+      this.elapsedTime += this.interval;
+      console.log(this.elapsedTime);
       if (this.invasionProgress < this.criticalInvasionProgress) {
         this.gameContainer.style.paddingTop = this.invasionProgress + "px";
         this.invasionProgress += this.invasionSpeed;
@@ -59,7 +66,7 @@ class Game {
     this.invasionProgress = 0;
     const message = this.message();
     message.classList.add('win');
-    message.innerHTML = 'OUR DOM IS SAVE FOR NOW! <br> GOOD JOB!'
+    message.innerHTML = `OUR DOM IS SAVE FOR NOW!<br> GOOD JOB!<br>YOU DEFEATED THE INVADERS IN ${this.elapsedTime / 1000} SECONDS.`;
   }
 
   newGame() {
@@ -79,12 +86,15 @@ class Game {
     const message = document.createElement('p');
     const button = document.createElement("button");
     const gameWrapper = document.getElementById('game-wrapper');
+    const score = document.getElementById('score');
+
     messageContainer.classList.add('message-container');
     message.classList.add('message');
     button.classList.add('play');
     button.innerText = 'Play again';
     button.addEventListener('click', () => {
       gameWrapper.removeChild(messageContainer);
+      gameWrapper.appendChild(score);
       gameWrapper.appendChild(this.gameContainer);
       document.getElementById('code-input').focus();
       this.generateInvaders();
@@ -93,6 +103,7 @@ class Game {
     messageContainer.appendChild(message);
     messageContainer.appendChild(button);
     gameWrapper.removeChild(this.gameContainer);
+    gameWrapper.removeChild(score);
     gameWrapper.appendChild(messageContainer);
     return message;
   }
