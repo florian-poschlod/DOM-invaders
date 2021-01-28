@@ -10,8 +10,8 @@ const INVADER_NAMES = [
 ];
 
 const INVADER_BMP = [
-  '../assets/invader-green.png',
-  '../assets/invader-yellow.png',
-  '../assets/invader-pink.png',
-  '../assets/invader-blue.png',
+  'assets/invader-green.png',
+  'assets/invader-yellow.png',
+  'assets/invader-pink.png',
+  'assets/invader-blue.png',
 ];
