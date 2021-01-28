@@ -1,33 +1,36 @@
 class Game {
-  constructor(invasionSpeed, interval, gameContainer, invaders) {
+  constructor(invasionSpeed, interval, gameContainer, invaderAmt) {
     this.invasionSpeed = invasionSpeed;
     this.interval = interval;
     this.invasionProgress = 0;
     this.gameContainer = gameContainer;
-    this.invaders = invaders;
+    this.invaderAmt = invaderAmt;
     this.remainingInvaders;
     this.criticalInvasionProgress;
+    this.invaderWrapper;
   }
 
   generateInvaders() {
-    this.invaders.forEach(invader => {
-      const newInvader = document.createElement('div');
-      newInvader.classList.add(`${invader}`);
-      newInvader.innerHTML = `class: <br> ${invader}`;
-      this.gameContainer.appendChild(newInvader);
-    });
+    const invaderWrapper = document.createElement('div');
+    invaderWrapper.classList.add('invader-wrapper');
+    this.invaderWrapper = invaderWrapper;
+    console.log(this.invaderWrapper);
+    this.gameContainer.appendChild(this.invaderWrapper);
+    const newInvader = new Invader();
+    for(let i = 0; i < this.invaderAmt; i++) {
+      this.invaderWrapper.appendChild(newInvader.assemble());
+    }
     this.criticalInvasionProgress = this.gameContainer.offsetHeight - this.gameContainer.firstChild.offsetHeight;
-
   }
 
   destroyInvader(value) {
-    let invader = gameContainer.querySelector(`${value}`);
-    this.gameContainer.removeChild(invader);
+    let invader = this.invaderWrapper.querySelector(`${value}`);
+    this.invaderWrapper.removeChild(invader);
   }
 
   moveInvaders() {
     let descent = setInterval(function () {
-      this.remainingInvaders = this.gameContainer.childElementCount;
+      this.remainingInvaders = this.invaderWrapper.childElementCount;
       if (this.invasionProgress < this.criticalInvasionProgress) {
         this.gameContainer.style.paddingTop = this.invasionProgress + "px";
         this.invasionProgress += this.invasionSpeed;

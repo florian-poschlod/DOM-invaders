@@ -1,19 +1,8 @@
-const invaders = [
-  'tyrant',
-  'vaporizer',
-  'slaughterer',
-  'desolator',
-  'silencer',
-  'devourer',
-  'brain-eater',
-  'suffocator'
-]
-
 const gameContainer = document.getElementById('game');
 
 window.addEventListener('load', () => {
   // invaders are 120px tall
-  const game = new Game(12, 1000, gameContainer, invaders);
+  const game = new Game(3, 1000, gameContainer, 16);
   game.newGame();
 
   const input = document.getElementById('code-input');  
