@@ -91,6 +91,7 @@ class Game {
     const button = document.createElement("button");
     const gameWrapper = document.getElementById('game-wrapper');
     const score = document.getElementById('score');
+    const scoreCounter = document.getElementById('score-counter');
 
     messageContainer.classList.add('message-container');
     message.classList.add('message');
@@ -98,6 +99,8 @@ class Game {
     button.innerText = 'Play again';
     button.addEventListener('click', () => {
       gameWrapper.removeChild(messageContainer);
+      this.score = 0;
+      scoreCounter.innerText = this.score;
       gameWrapper.appendChild(score);
       gameWrapper.appendChild(this.gameContainer);
       document.getElementById('code-input').focus();
