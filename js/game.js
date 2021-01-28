@@ -37,7 +37,6 @@ class Game {
     let descent = setInterval(function () {
       this.remainingInvaders = this.invaderWrapper.childElementCount;
       this.elapsedTime += this.interval;
-      console.log(this.elapsedTime);
       if (this.invasionProgress < this.criticalInvasionProgress) {
         this.gameContainer.style.paddingTop = this.invasionProgress + "px";
         this.invasionProgress += this.invasionSpeed;
@@ -62,11 +61,16 @@ class Game {
   }
 
   playerWins() {
+    const timeBonus = this.criticalInvasionProgress / this.invasionProgress;
     this.gameContainer.innerHTML = '';
     this.invasionProgress = 0;
     const message = this.message();
     message.classList.add('win');
-    message.innerHTML = `OUR DOM IS SAVE FOR NOW!<br> GOOD JOB!<br>YOU DEFEATED THE INVADERS IN ${this.elapsedTime / 1000} SECONDS.`;
+    message.innerHTML = `
+    OUR DOM IS SAVE FOR NOW!<br>
+    GOOD JOB!<br>YOU DEFEATED THE INVADERS IN ${this.elapsedTime / 1000} SECONDS.<br>
+    YOUR FINAL SCORE WITH TIME BONUS IS<br>
+    ${Math.round((this.score * 1000) * timeBonus)}!`;
   }
 
   newGame() {
