@@ -5,9 +5,6 @@ All our weapons can't harm them, but our hackers found a way to inject JavaSript
 
 You can play the game here: https://florian-poschlod.github.io/DOM-invaders/
 
-## Description
-
-
 ## Technologies
 * JavaScript
 * DOM Manipulation
