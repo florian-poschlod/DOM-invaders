@@ -26,10 +26,19 @@ class Game {
   }
 
   destroyInvader(value) {
-    let invader = this.invaderWrapper.querySelector(`${value}`);
+    const scoreCounter = document.getElementById('score-counter');
+    const warningBox = document.getElementById('warning');
+    let invader;
+
+    if (value.substring(0, 3) === 'div') {
+      warningBox.innerText = 'NICE TRY! YOU HAVE TO TYPE HARDER TO UNLOCK THE "DIV"!';
+    } else {
+      warningBox.innerText = '';
+      invader = this.invaderWrapper.querySelector(`${value}`);
+    }
+
     this.invaderWrapper.removeChild(invader);
     this.score = this.invaderAmt - this.invaderWrapper.childElementCount;
-    const scoreCounter = document.getElementById('score-counter');
     scoreCounter.innerText = this.score * 1000;
   }
   
